@@ -36,6 +36,13 @@ app.post('/posts', async (req, res) => {
     await Post.create(req.body);
     res.redirect('/');
 });
+app.get('/post/:id', async (req, res) => {
+    const post = await Post.findById(req.params.id);
+    res.render('post', {
+        post
+    });
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server ${PORT} portunda çalışıyor...`);
